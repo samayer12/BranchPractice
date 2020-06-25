@@ -1,0 +1,199 @@
+  518  echo "START"
+  519  git clone git@github.com:samayer12/BranchPractice.git
+  520  ls
+  521  cd BranchPractice/
+  522  echo "File from Master" >> all_touch.txt
+  523  git checkout -b "Feature1"
+  524  echo "File from Feature1" >> f1.txt
+  525  git checkout -b "S1"
+  527  echo "File from S1" >> s1.txt
+  528  echo "S1 was here" >> f1.txt 
+  530  git log --decorate --oneline
+  531  git checkout Feature1
+  532  git status
+  530  git log --decorate --oneline
+  533  git checkout master
+  534  git status
+  530  git log --decorate --oneline
+  535  git add all_touch.txt
+  536  git commit -m "Make file that all branches touch"
+  537  git checkout Feature1
+  538  git status
+  530  git log --decorate --oneline
+  539  git add f1.txt
+  540  git commit -m "Create a file that only Feature1 touches"
+  541  git push
+  542  git push origin Feature1
+  543  git checkout master
+  544  git status
+  530  git log --decorate --oneline
+  545  git push origin master
+  546  git checkout S1
+  547  git status
+  530  git log --decorate --oneline
+  548  git add s1.txt 
+  549  git commit -m "Create a file only used by s1"
+  551  git checkout Feature1
+  552  git pull origin master
+  555  git push origin Feature1
+  557  git checkout S1
+  558  git pull origin Feature1
+  560  git push origin S1
+  561  git checkout Feature1
+  562  git checkout -b S2
+  564  echo "S2 was here" >> s2.txt
+  566  echo "S2" >> f1.txt 
+  567  echo "S2" >> all_touch.txt 
+  568  git status
+  569  git add s2.txt 
+  570  git commit -m "Create a file only S2 touches"
+  571  git status
+  530  git log --decorate --oneline
+  572  git commit -A
+  573  git add -A
+  574  git status
+  530  git log --decorate --oneline
+  575  git commit -m "Modify files in other branches"
+  576  git status
+  530  git log --decorate --oneline
+  577  git push origin S2
+  578  git checkout S1
+  579  ls -l
+  580  cat s1.txt 
+  581  echo "S1" > f1.txt 
+  582  echo "S1" > all_touch.txt 
+  583  ls -l
+  584  git status
+  585  git add -A
+  586  git commit -m "Modify shared files"
+  592  git checkout Feature1
+  591  git log --decorate --oneline --graph
+  594  git checkout S2
+  595  git log --decorate --oneline --graph
+  596  git checkout S1
+  599  git push origin S1
+  600  git checkout S2
+  601  git push origin S2
+  602  git checkout Feature1
+  603  git checkout S2
+  604  git pull Feature1 S2
+  605  git checkout S2
+  606  git merge Feature1
+  607  git checkout Feature1
+  608  git merge S2
+  611  git log --decorate --oneline --graph
+  612  git checkout Feature1
+  617  git log --decorate --oneline --graph
+  624  git checkout Feature1
+  630  git status
+  617  git log --decorate --oneline --graph
+  632  git commit -am "Fix file edit mistakes"
+  633  git status
+  634  git push origin Feature1
+  635  git checkout S1
+  636  git pull Feature1
+  637  git config pull.rebase false
+  638  git pull Feature1
+  639  git pull origin Feature1
+  640  vim f1.txt 
+  641  vim all_touch.txt 
+  642  git status
+  617  git log --decorate --oneline --graph
+  643  ls -l
+  644  rm s2.txt 
+  645  git status
+  617  git log --decorate --oneline --graph
+  646  git add -A
+  647  git status
+  617  git log --decorate --oneline --graph
+  648  git commit -m "Add S1 artifacts to shared files"
+  649  git pull origin Feature1
+  650  git checkout Feature1
+  656  git pull origin Feature1
+  657  ls
+  658  cat f1.txt 
+  659  git checkout S1
+  660  cat f1.txt 
+  661  cat all_touch.txt 
+  662  git status
+  663  git push origin S1
+  664  git checkout Feature1
+  665  git merge S1
+  666  cat all_touch.txt 
+  667  cat f1.txt 
+  668  cat s1.txt 
+  669  ls -l
+  670  git status
+  671  git push origin Feature1
+  672  git checkout S2
+  673  git merge origin Feature1
+  674  git status
+  675  ls -l
+  676  cat all_touch.txt 
+  677  git log --decorate --oneline --graph
+  678  git checkout S1
+  679  git log --decorate --oneline --graph
+  680  git checkout S2
+  681  git pull origin Feature1
+  682  ls -l
+  683  cat all_touch.txt 
+  684  cat f1.txt 
+  685  cat s1.txt 
+  686  rm s1.txt 
+  687  ls -l
+  688  echo "S2" > s2.txt
+  689  ls -l
+  690  git status
+  691  git add -A
+  692  cat all_touch.txt 
+  693  echo S2 >> all_touch.txt 
+  694  echo S2 f1.txt 
+  695  echo S2 >> f1.txt 
+  696  ls -l
+  697  git status
+  698  git add -A
+  699  git status
+  700  git commit -m "Create S2 artifacts"
+  701  git push
+  702  git push origin S2
+  703  git merge Feature1
+  704  git checkout Feature1
+  705  git merge origin S2
+  706  ls -l
+  707  git log --decorate --oneline --graph
+  708  git pull origin Feature1
+  709  ls -l
+  710  git branch -f Feature1 78aeaa7
+  711  git revert
+  712  ls
+  713  git fetch
+  714  git checkout -m S1 s1.txt
+  715  git add s1.txt
+  716  git status
+  717  git commit -m "Rescue s1.txt from deletion"
+  718  git push origin Feature1
+  719  git status
+  720  ls -l
+  721  git log --decorate --oneline --graph
+  722  git merge master
+  723  git pull origin master
+  724  git checkout master
+  725  git merge Feature1
+  726  ls -l
+  727  git checkout Feature1
+  728  git push origin Feature1
+  729  git checkout origin master
+  730  git checkout master
+  731  git log --decorate --oneline --graph
+  732  git merge origin/Feature1
+  733  ls -l
+  734  git status
+  735  git push
+  736  git log --decorate --oneline --graph
+  737  echo "Ship it!" >> README.md 
+  738  git commit -m "Ship it!"
+  739  git commit -am "Ship it!"
+  740  git push
+  741  git log --decorate --oneline --graph
+  742  history
+
